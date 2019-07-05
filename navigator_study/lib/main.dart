@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './route.dart';
+import './namedRoute.dart';
 
 void main() => runApp(HeroApp());
 
@@ -9,6 +9,13 @@ class HeroApp extends StatelessWidget {
     return MaterialApp(
       title: 'Transition Demo',
       home: MainScreen(),
+      initialRoute: '/main',
+      routes: {
+        '/main': (context) => MainScreen(),
+        '/detail': (context) => DetailScreen(),
+        '/first': (context) => FirstScreen(),
+        '/second': (context) => SecondScreen(),
+      },
     );
   }
 }
@@ -22,9 +29,7 @@ class MainScreen extends StatelessWidget {
       ),
       body: GestureDetector(
         onTap: () {
-          Navigator.push(context, MaterialPageRoute(builder: (_) {
-            return DetailScreen();
-          }));
+          Navigator.pushNamed(context, '/detail'); 
         },
         child: Center(
           child: Image.network(
@@ -40,13 +45,14 @@ class DetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Detail Screen'),
+      ),
       body: GestureDetector(
         onTap: () {
-          Navigator.push(context, MaterialPageRoute(builder:(_){
-            return FirstRoute();
-          }));
+          Navigator.pushNamed(context, '/first');
         },
-        onDoubleTap: (){
+        onDoubleTap: () {
           Navigator.pop(context);
         },
         child: Center(
