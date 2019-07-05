@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './route.dart';
 
 void main() => runApp(HeroApp());
 
@@ -41,6 +42,11 @@ class DetailScreen extends StatelessWidget {
     return Scaffold(
       body: GestureDetector(
         onTap: () {
+          Navigator.push(context, MaterialPageRoute(builder:(_){
+            return FirstRoute();
+          }));
+        },
+        onDoubleTap: (){
           Navigator.pop(context);
         },
         child: Center(
@@ -52,10 +58,3 @@ class DetailScreen extends StatelessWidget {
     );
   }
 }
-
-// Hero(
-//   tag: 'imageHero',
-//   child: Image.network(
-//     'https://picsum.photos/250?image=9',
-//   ),
-// );
